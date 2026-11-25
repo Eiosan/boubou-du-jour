@@ -197,10 +197,13 @@ function tirerBoubou(){
 
     const musique = document.getElementById("musique");
 
-    if(musique.paused){
-        musique.play();
+if(musique.paused){
+    musique.play().then(() => {
         document.getElementById("musicButton").textContent = "🔇 Musique ON";
-    }
+    }).catch(err => {
+        console.log(err);
+    });
+}
 
     const random = photos[Math.floor(Math.random()*photos.length)];
 
@@ -219,17 +222,24 @@ function tirerBoubou(){
     }, 100);
 }
 
-function toggleMusic(){
+function toggleMusic() {
 
     const musique = document.getElementById("musique");
     const bouton = document.getElementById("musicButton");
 
-    if(musique.paused){
-        musique.play();
-        bouton.textContent = "🔇 Musique ON";
-    }else{
+    if (musique.paused) {
+
+        musique.play().then(() => {
+            bouton.textContent = "🔇 Musique ON";
+        }).catch(err => {
+            console.log(err);
+        });
+
+    } else {
+
         musique.pause();
         bouton.textContent = "🔊 Musique OFF";
+
     }
 }
 
