@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Quel Boubou es-tu aujourd'hui ?</title>
+
+<style>
+body{
+    margin:0;
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(135deg,#ffecd2,#fcb69f);
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+}
+
+.container{
+    max-width:800px;
+    padding:30px;
+}
+
+h1{
+    font-size:3em;
+    margin-bottom:10px;
+}
+
+.subtitle{
+    color:#555;
+    margin-bottom:30px;
+}
+
+button{
+    background:#ff6b6b;
+    color:white;
+    border:none;
+    padding:18px 35px;
+    border-radius:50px;
+    font-size:1.3em;
+    cursor:pointer;
+    transition:0.3s;
+    box-shadow:0 8px 20px rgba(0,0,0,0.15);
+}
+
+button:hover{
+    transform:scale(1.05);
+    background:#ff5252;
+}
+
+.result{
+    margin-top:35px;
+}
+
+#boubouName{
+    font-size:2em;
+    font-weight:bold;
+    color:#333;
+}
+
+#quote{
+    font-style:italic;
+    color:#666;
+    margin:15px 0 25px;
+}
+
+img{
+    max-width:100%;
+    max-height:500px;
+    border-radius:25px;
+    box-shadow:0 12px 35px rgba(0,0,0,0.25);
+    opacity:0;
+    transform:scale(0.9);
+    transition:all .5s ease;
+}
+
+img.show{
+    opacity:1;
+    transform:scale(1);
+}
+
+.footer{
+    margin-top:20px;
+    color:#777;
+    font-size:.9em;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>🐶 Quel Boubou es-tu aujourd'hui ?</h1>
+    <p class="subtitle">
+        La science n'explique pas les résultats.
+    </p>
+
+    <button onclick="tirerBoubou()">
+        🎲 Découvrir mon Boubou du jour
+    </button>
+
+    <div class="result">
+
+        <div id="boubouName"></div>
+
+        <div id="quote"></div>
+
+        <img id="photo" src="">
+
+    </div>
+
+    <div class="footer">
+        Résultat certifié 100% Boubou-compatible
+    </div>
+
+</div>
+
+<script>
+
+const photos = [
+
+{
+    file:"Boubou c'est pas comme ça qu'on imagine la vie.png",
+    phrase:"Aujourd'hui, l'énergie est au minimum syndical."
+},
+
+{
+    file:"Boubou sunshine.jpg",
+    phrase:"Tu rayonnes... mais sans en faire trop."
+},
+
+{
+    file:"Boubou voyage brouette entre copains.jpg",
+    phrase:"Tu te laisses porter par les événements."
+}
+
+];
+
+function tirerBoubou(){
+
+    const random = photos[Math.floor(Math.random()*photos.length)];
+
+    const nom = random.file.replace(/\.[^/.]+$/, "");
+
+    document.getElementById("boubouName").textContent = nom;
+    document.getElementById("quote").textContent = '"' + random.phrase + '"';
+
+    const img = document.getElementById("photo");
+
+    img.classList.remove("show");
+
+    setTimeout(()=>{
+        img.src = "images/" + random.file;
+        img.classList.add("show");
+    },100);
+
+}
+
+</script>
+
+</body>
+</html>
