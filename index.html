@@ -90,6 +90,10 @@ img.show{
 </head>
 
 <body>
+    
+<audio id="musique" loop>
+    <source src="music/boubou-theme.mp3" type="audio/mpeg">
+</audio>
 
 <div class="container">
 
@@ -101,6 +105,11 @@ img.show{
     <button onclick="tirerBoubou()">
         🎲 Découvrir mon Boubou du jour
     </button>
+
+    <br><br>
+<button onclick="toggleMusic()" id="musicButton">
+    🔊 Musique OFF
+</button>
 
     <div class="result">
 
@@ -176,15 +185,22 @@ phrase:"Aujourd'hui tu protèges les petits et surveilles les bêtises."
 file:"Boubou chapeau croquette.png",
 phrase:"Une récompense t'attend. Elle est probablement alimentaire."
 },
-    
+
 {
 file:"Boubou CGT REVOLTE.jpg",
 phrase:"Aboiements illimités jusqu'à satisfaction des revendications 🐶📢"
-},
-    
+}
+
 ];
 
 function tirerBoubou(){
+
+    const musique = document.getElementById("musique");
+
+    if(musique.paused){
+        musique.play();
+        document.getElementById("musicButton").textContent = "🔇 Musique ON";
+    }
 
     const random = photos[Math.floor(Math.random()*photos.length)];
 
@@ -197,11 +213,24 @@ function tirerBoubou(){
 
     img.classList.remove("show");
 
-    setTimeout(()=>{
+    setTimeout(() => {
         img.src = "images/" + random.file;
         img.classList.add("show");
-    },100);
+    }, 100);
+}
 
+function toggleMusic(){
+
+    const musique = document.getElementById("musique");
+    const bouton = document.getElementById("musicButton");
+
+    if(musique.paused){
+        musique.play();
+        bouton.textContent = "🔇 Musique ON";
+    }else{
+        musique.pause();
+        bouton.textContent = "🔊 Musique OFF";
+    }
 }
 
 </script>
